@@ -1,150 +1,221 @@
-body {
+:root {
+  --green:  #66ff66;
+  --violet: #9b5bff;
+  --gap:    48px;
+}
+
+* {
   margin: 0;
-  font-family: 'Courier New', Courier, monospace;
-  color: #00ff00;
-  background: black;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  color: var(--violet);
+  font: 15px/1.45 "Fira Code", monospace;
   overflow-x: hidden;
 }
+
+#wrapper {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 60px 20px 90px;
+}
+
+/* === header === */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: var(--gap);
+}
+
+h1 {
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: var(--green);
+}
+
+h3 {
+  font-size: 1.15rem;
+  font-weight: 200;
+  color: var(--green);
+}
+
+#avatar {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* === sections === */
+section {
+  margin-bottom: var(--gap);
+}
+
+section hr {
+  border: 0;
+  border-top: 2px dashed var(--green);
+  margin: 0 0 calc(var(--gap)*0.6);
+}
+
+section:last-of-type {
+  margin-bottom: 0;
+}
+
+section h3 {
+  margin: 0 0 14px;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--green);
+}
+
+/* lists */
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+li::before {
+  content: "- ";
+  color: var(--green);
+}
+
+li + li {
+  margin-top: 3px;
+}
+
+.meta-key {
+  color: var(--green);
+  font-weight: 600;
+}
+
+/* dual-column wrapper */
+.dual {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+/* trainings horizontal strip */
+.trainings {
+  display: flex;
+  gap: 32px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.trainings::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.trainings pre {
+  min-width: 260px;
+  scroll-snap-align: start;
+  background: rgba(0,255,0,.04);
+  padding: 10px;
+  border-radius: 6px;
+  white-space: pre-wrap;
+  color: var(--violet);
+}
+
+/* social buttons */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  font-size: .9em;
+  text-decoration: none;
+  color: var(--violet);
+  background: rgba(0,255,0,.08);
+  border: 1px dashed var(--green);
+  border-radius: 8px;
+  transition: .2s;
+}
+
+.pill i {
+  font-size: 1em;
+}
+
+.pill:hover {
+  background: var(--green);
+  color: #000;
+  transform: translateY(-1px);
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+/* === matrix rain === */
 canvas {
   position: fixed;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
-  z-index: -2;
   pointer-events: none;
+  z-index: -2;
 }
+
 .overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.6);
+  inset: 0;
+  background: rgba(0,0,0,.6);
   z-index: -1;
 }
 
-
-header {
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  color: #00ff00;
-  font-size: 2rem;
-  z-index: 1000;
-  margin: 10px 0;
-  white-space: nowrap;
-}
-
-.console::before {
-  content: "$ ";
-}
-.typing {
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid #00ff00;
-  box-sizing: content-box;
-  animation: typingHeader 4s steps(20, end), blinkHeader 0.5s step-end infinite alternate 4s;
-}
-@keyframes typingHeader {
-  from { width: 0; }
-  to   { width: 100%; }
-}
-@keyframes blinkHeader {
-  50% { border-right-color: transparent; }
-}
-
-
-main {
-  margin-top: 80px;
-  max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-  padding: 20px;
-}
-.welcome {
-  margin-bottom: 40px;
-}
-.welcome h1 span {
-  color: #00ff00;
-  text-shadow: 0 0 10px #00ff00;
-}
-.welcome p {
-  line-height: 1.5;
-}
-
-
-.hacker-section {
-  margin-top: 40px;
-  text-align: center;
-}
-.hacker-block {
-  display: inline-block;
-  vertical-align: top;
-  width: 300px;
-  max-width: 90%;
-  margin: 0 20px;
-}
-.hacker-block h3 {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-.console-content {
-  position: relative;
-  text-align: left;
-  min-height: 50px;
-}
-
-@media (max-width: 768px) {
-  .hacker-block {
-    display: block;
-    width: 90%;
-    margin: 0 auto 20px;
-    margin-top: 60px;
+/* ——— mobile tweaks: ≤480 px ——— */
+@media (max-width: 480px) {
+  :root {
+    --gap: 32px;
   }
-}
+  
+  body {
+    font-size: 14px;
+  }
+  
+  #wrapper {
+    padding: 40px 16px 70px;
+  }
 
+  header {
+    gap: 12px;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h3 {
+    font-size: 1rem;
+  }
+  
+  #avatar {
+    width: 60px;
+    height: 60px;
+  }
 
-.cursor {
-  position: absolute;
-  width: 2px;
-  height: 1em;
-  background-color: #00ff00;
-  animation: blinkCursor 0.6s infinite;
-  visibility: hidden;
-}
-@keyframes blinkCursor {
-  0%   { opacity: 1; }
-  50%  { opacity: 0; }
-  100% { opacity: 1; }
-}
-.console-line {
-  margin: 0;
-  white-space: pre-wrap;
-  display: block;
-}
-
-
-footer {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 25px;
-  justify-content: center;
-  align-items: center;
-}
-.social-icons a {
-  color: #00ff00;
-  font-size: 48px;
-  text-decoration: none;
-  transition: transform 0.2s, color 0.2s;
-}
-.social-icons a:hover {
-  transform: scale(1.2);
-  color: #00ff88;
+  .dual {
+    grid-template-columns: 1fr;
+  }
+  
+  .trainings pre {
+    min-width: 220px;
+    font-size: 0.9em;
+  }
+  
+  .pill {
+    font-size: 0.8em;
+    padding: 5px 12px;
+  }
 }
