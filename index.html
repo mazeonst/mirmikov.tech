@@ -1,64 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>mirmikov.tech</title>
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-  />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/png" href="/pixelcat.png" sizes="32x32">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
   <canvas></canvas>
   <div class="overlay"></div>
 
+  <div id="wrapper">
+    <!-- HEADER -->
+    <header>
+      <div>
+        <h1>$ mirmikov.tech</h1>
+        <h3># Mike | he/his/him | Developer</h3>
+        <h3># speak | говорю | rozmovlyaju</h3>
+      </div>
+      <img id="avatar" src="avatar.gif" alt="avatar">
+    </header>
 
-  <header>
-    <span class="console typing">mirmikov.tech</span>
-  </header>
-
-
-  <main>
-    <section class="welcome">
-      <h1>Welcome to <span>mirmikov.tech</span>!</h1>
-      <p>
-        My name is Mike, and I am the president of this site. I do web app development,
-        Swift and Python development. One of my main sporting hobbies is
-        skiing. I also try to take care of the environment by sorting rubbish.
-        And something else :)
-      </p>
-      <p>The web site is used as a stopper</p>
+    <!-- interests / skills -->
+    <section>
+      <hr>
+      <div class="dual">
+        <div>
+          <h3># interests</h3>
+          <ul>
+            <li>flipper zero</li>
+            <li>linux / networking</li>
+            <li>cybersecurity</li>
+            <li>math</li>
+            <li>skiing / cycling / camping</li>
+          </ul>
+        </div>
+        <div>
+          <h3># programming skills</h3>
+          <ul>
+            <li>swift / python / javascript</li>
+            <li>postgreSQL / redis</li>
+            <li>Nginx / SSH</li>
+            <li>docker</li>
+            <li>fastAPI</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
-    <section class="hacker-section">
+    <!-- boring metadata -->
+    <section>
+      <hr>
+      <h3># boring metadata</h3>
+      <ul>
+        <li><span class="meta-key">age:</span> 17 y/o</li>
+        <li><span class="meta-key">languages:</span> en-US, ru-RU, ua-UA</li>
+        <li><span class="meta-key">e-mail:</span> mike@mirmikov.tech</li>
+        <li><span class="meta-key">timezone:</span> UTC+3</li>
+        <li><span class="meta-key">uname -a:</span> macOS + Arch</li>
+      </ul>
+    </section>
 
-      <div class="hacker-block">
-        <h3></h3>
-        <div class="console-content" id="console-left"></div>
-      </div>
-
-
-      <div class="hacker-block">
-        <h3></h3>
-        <div class="console-content" id="console-right"></div>
+    <!-- training log -->
+    <section>
+      <hr>
+      <h3># training log</h3>
+      <div class="trainings">
+        <pre>
+$ workout 2025-05-30
+cycling 23.16 km:1:27:13
+calories:552
+average speed:15.9
+        </pre>
+        <pre>
+$ workout 2025-05-28
+run 20 km:42:10
+squats: 100
+        </pre>
+        <pre>
+$ workout 2025-05-26
+swim 3 km:46:05
+plank:3:00
+burpees:30
+        </pre>
+        <pre>
+$ workout 2025-05-24
+run 10 km:54:45
+push-ups:60
+sit-ups:100
+        </pre>
       </div>
     </section>
-  </main>
 
-
-  <footer>
-    <div class="social-icons">
-      <a href="https://github.com/mazeonst" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://instagram.com/mirmikovv" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://t.me/mazeonst" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
-    </div>
-  </footer>
-
+    <!-- socials -->
+    <section>
+      <hr>
+      <h3># socials</h3>
+      <nav class="socials">
+        <a class="pill" href="https://github.com/mazeonst" target="_blank"><i class="fab fa-github"></i>github</a>
+        <a class="pill" href="https://t.me/mazeonst" target="_blank"><i class="fab fa-telegram"></i>telegram</a>
+        <a class="pill" href="https://instagram.com/mirmikovv" target="_blank"><i class="fab fa-instagram"></i>instagram</a>
+        <a class="pill" href="mailto:mike@mirmikov.tech"><i class="fas fa-envelope"></i>e-mail</a>
+        <a class="pill" href="https://discord.com/users/mazeonst" target="_blank"><i class="fab fa-discord"></i>discord</a>
+        <a class="pill" href="https://www.duolingo.com/profile/mirmikov" target="_blank"><i class="fas fa-globe"></i>duolingo</a>
+      </nav>
+    </section>
+  </div>
 
   <script src="matrix.js"></script>
-  <script src="typing.js"></script>
 </body>
 </html>
