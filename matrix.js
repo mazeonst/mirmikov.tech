@@ -1,37 +1,53 @@
-let C = document.querySelector("canvas"),
-    $ = C.getContext("2d"),
-    W = (C.width = window.innerWidth),
-    H = (C.height = window.innerHeight);
+const C = document.querySelector("canvas"),
+      ctx = C.getContext("2d"),
+      fontSize = 11,
+      chars = "車+Б0雨-Г1水=Е2馬Ж3眉N4並К5掠М6Н醒7ПР8WF9УФ!Х靜?ЧG.ЩЪ,ЫЬ:Э水;Я".split("");
 
-const str = "А+阿0В-Г1Д=Е2F Ж3З 用4Й К5Л 哟6Н О7H Р8С Т9У Y!W Ц?Ч 夏.ЩЪ,恩 Ь:哈Ю;Я";
-const matrix = str.split("");
+let W = C.width = innerWidth,
+    H = C.height = innerHeight,
+    columns = Math.floor(W / fontSize),
+    drops = Array.from({length: columns}, () => Math.floor(Math.random() * H / fontSize));
 
-let font = 11,
-    col = W / font,
-    arr = [];
+function step() {
+  ctx.fillStyle = "rgba(0,0,0,0.05)";
+  ctx.fillRect(0, 0, W, H);
 
-for (let i = 0; i < col; i++) arr[i] = 1;
+  ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--green').trim();
+  ctx.font = fontSize + "px monospace";
 
-function draw() {
-  $.fillStyle = "rgba(0,0,0,0.05)";
-  $.fillRect(0, 0, W, H);
-  $.fillStyle = "#0f0";
-  $.font = font + "px system-ui";
-  for (let i = 0; i < arr.length; i++) {
-    let txt = matrix[Math.floor(Math.random() * matrix.length)];
-    $.fillText(txt, i * font, arr[i] * font);
-    if (arr[i] * font > H && Math.random() > 0.975) arr[i] = 0;
-    arr[i]++;
+  for(let i = 0; i < columns; i++) {
+    const ch = chars[Math.random() * chars.length | 0];
+    ctx.fillText(ch, i * fontSize, drops[i] * fontSize);
+
+    if(drops[i] * fontSize > H && Math.random() > 0.975) drops[i] = 0;
+    drops[i]++;
   }
 }
-setInterval(draw, 123);
+setInterval(step, 120);
 
-window.addEventListener("resize", () => {
-  C.width = window.innerWidth;
-  C.height = window.innerHeight;
-  W = C.width;
-  H = C.height;
-  col = W / font;
-  arr = [];
-  for (let i = 0; i < col; i++) arr[i] = 1;
+addEventListener('resize', () => {
+  const oldW = W, oldH = H;
+
+  W = innerWidth;
+  H = innerHeight;
+
+  if (W !== oldW) {
+    C.width = W;
+    C.height = H;
+  }
+
+  const k = H / oldH;
+  for(let i = 0; i < drops.length; i++) {
+    drops[i] = Math.floor(drops[i] * k);
+  }
+
+  const newCols = Math.floor(W / fontSize);
+  if (newCols > columns) {
+    for(let i = columns; i < newCols; i++) {
+      drops[i] = Math.floor(Math.random() * H / fontSize);
+    }
+  } else if (newCols < columns) {
+    drops.length = newCols;
+  }
+  columns = newCols;
 });
